@@ -1,26 +1,30 @@
-<html>
-    <head>
-        <title>Studenti View</title>
+@extends('layouts.app')
 
-    </head>
-    <body>
-        <table>
-            <tr>
-                <th>ID:</th>
-                <td>{{$studenti->getId()}}</td>
-            </tr>
-            <tr>
-                <th>Full Name:</th>
-                <td>{{$studenti->getFullName()}}</td>
-            </tr>
-            <tr>
-                <th>Birthdate:</th>
-                <td>{{$studenti->getBirthdate()}}</td>
-            </tr>
-            <tr>
-                <th>Gender:</th>
-                <td>{{$studenti->getGender()}}</td>
-            </tr>
-        </table>
-    </body>
-</html>
+@section('title', 'Studenti me id='.$studenti->getId())
+
+@section("sidebar")
+    @parent
+    Subs sidebar
+@endsection
+
+@section('content')
+    <table>
+        @component('components.tablerow')
+            @slot('attributeName','ID')
+            @slot('value', $studenti->getId())
+        @endcomponent
+        @component('components.tablerow')
+            @slot('attributeName','Full Name')
+            @slot('value', $studenti->getFullName())
+        @endcomponent
+        <tr>
+            <th>Birthdate:</th>
+            <td>{{$studenti->getBirthdate()}}</td>
+        </tr>
+        <tr>
+            <th>Gender:</th>
+            <td>{{$studenti->getGender()}}</td>
+        </tr>
+    </table>
+@endsection
+

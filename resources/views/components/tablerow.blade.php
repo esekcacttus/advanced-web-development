@@ -1,4 +1,4 @@
 <tr>
-    <th>{{$attributeName}}:</th>
+    <th style="color: {{$rowColor ?? 'black'}}">{{$attributeName}}:</th>
     <td>{{$value}}</td>
 </tr>

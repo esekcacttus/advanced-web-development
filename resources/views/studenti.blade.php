@@ -8,23 +8,26 @@
 @endsection
 
 @section('content')
-    <table>
+    <table border="1">
         @component('components.tablerow')
+            @slot('rowColor', 'red')
             @slot('attributeName','ID')
             @slot('value', $studenti->getId())
         @endcomponent
         @component('components.tablerow')
+            @slot('rowColor', 'green')
             @slot('attributeName','Full Name')
             @slot('value', $studenti->getFullName())
         @endcomponent
-        <tr>
-            <th>Birthdate:</th>
-            <td>{{$studenti->getBirthdate()}}</td>
-        </tr>
-        <tr>
-            <th>Gender:</th>
-            <td>{{$studenti->getGender()}}</td>
-        </tr>
+        @component('components.tablerow')
+            @slot('rowColor', 'blue')
+            @slot('attributeName', "Birthdate")
+            @slot('value', $studenti->getBirthdate())
+        @endcomponent
+        @component('components.tablerow')
+            @slot('attributeName', 'Gender')
+            @slot('value', $studenti->getGender())
+        @endcomponent
     </table>
 @endsection
 

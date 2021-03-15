@@ -17,4 +17,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/', 'welcome');
+
+Route::redirect('/test', '/studenti');
+
+Route::get('/test2', function (){
+    return redirect()->route('student_with_id');
+});
+
+Route::get('/studentat/{id?}', function ($id=1){
+    return "The ID=".$id;
+})->name('student_with_id');
+
 Route::get('/studenti', 'App\Http\Controllers\StudentiController@studenti');
+
+Route::prefix('shkolla')->group(function (){
+    Route::get('klasa', function (){return 'Klasa';});
+    Route::get('studenti', function (){return 'Studenti';});
+});

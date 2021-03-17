@@ -35,3 +35,7 @@ Route::prefix('shkolla')->group(function (){
     Route::get('klasa', function (){return 'Klasa';});
     Route::get('studenti', function (){return 'Studenti';});
 });
+
+Route::get('/create-new-student', 'App\Http\Controllers\StudentiController@createNewStudent');
+Route::get('/rename-all-students/{firstName}', 'App\Http\Controllers\StudentiController@renameAllStudents');
+Route::get('/show-student/{id}', 'App\Http\Controllers\StudentiController@showStudent');

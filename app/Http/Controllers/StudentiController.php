@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\OldStudenti;
+use App\Models\Student;
+use Carbon\Carbon;
 
 class StudentiController extends Controller
 {
@@ -13,5 +15,36 @@ class StudentiController extends Controller
         return view('studenti', [
             "studenti" => $studenti
         ]);
+    }
+
+    public function showStudent($id){
+        $student = Student::find($id);
+
+        return view('studenti', [
+            'studenti' => $student
+        ]);
+    }
+
+    public function createNewStudent(){
+        $student = new Student();
+        $student->first_name = "Filan";
+        $student->last_name = "Fisteku";
+        $student->gender = 'M';
+        $student->birthdate = Carbon::now()->toDate();
+        $student->is_active = true;
+
+        $student->save();
+    }
+
+    public function renameAllStudents($firstName){
+        $students = Student::all();
+        foreach ($students as $student){
+            $student->first_name = $firstName;
+            $student->save();
+        }
+    }
+
+    public function allStudents(){
+
     }
 }

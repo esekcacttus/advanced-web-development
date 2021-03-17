@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-class Studenti
+class OldStudenti
 {
     private $id;
     private $fullName;

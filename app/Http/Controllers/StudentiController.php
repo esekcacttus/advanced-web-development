@@ -25,6 +25,24 @@ class StudentiController extends Controller
         ]);
     }
 
+    public function showStudents($gender, $isActive=true){
+/*        dd(
+            Student::where('gender', $gender)
+                ->orWhere('is_active', $isActive)
+                ->orderBy('id', 'DESC')
+                ->toSql()
+        );*/
+
+
+        $students = Student::where('gender', $gender)
+            ->orWhere('is_active', $isActive)
+            ->first();
+
+        return view('studenti', [
+            'studenti' => $students
+        ]);
+    }
+
     public function createNewStudent(){
         $student = new Student();
         $student->first_name = "Filan";

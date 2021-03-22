@@ -39,3 +39,4 @@ Route::prefix('shkolla')->group(function (){
 Route::get('/create-new-student', 'App\Http\Controllers\StudentiController@createNewStudent');
 Route::get('/rename-all-students/{firstName}', 'App\Http\Controllers\StudentiController@renameAllStudents');
 Route::get('/show-student/{id}', 'App\Http\Controllers\StudentiController@showStudent');
+Route::get('/show-students/{gender}/{isActive?}', 'App\Http\Controllers\StudentiController@showStudents');

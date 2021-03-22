@@ -73,7 +73,25 @@ class StudentiController extends Controller
     }
 
     public function postEditStudent(Request $request){
-        $path = $request->file('profile_picture')->store('public/images');
-        dd($path);
+
+        $profilePicture = $request->file('profile_picture');
+        $path = null;
+
+        if($profilePicture != null){
+            $path = $profilePicture->store('public/images');
+        }
+
+        $student = new Student();
+        $student->first_name = $request->first_name;
+        $student->last_name = $request->last_name;
+        $student->gender =  $request->gender;
+        $student->birthdate = $request->birthdate;
+        $student->profile_picture = $path;
+        $student->is_active = true;
+
+        $student->save();
+
+        /*$path = $request->file('profile_picture')->store('public/images');
+        dd($path);*/
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\OldStudenti;
 use App\Models\Student;
 use Carbon\Carbon;
+use GuzzleHttp\Psr7\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
 
 class StudentiController extends Controller
 {
@@ -64,5 +66,14 @@ class StudentiController extends Controller
 
     public function allStudents(){
 
+    }
+
+    public function getEditStudent(){
+        return view('studenti-edit');
+    }
+
+    public function postEditStudent(Request $request){
+        $path = $request->file('profile_picture')->store('public/images');
+        dd($path);
     }
 }

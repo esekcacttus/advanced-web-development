@@ -40,3 +40,5 @@ Route::get('/create-new-student', 'App\Http\Controllers\StudentiController@creat
 Route::get('/rename-all-students/{firstName}', 'App\Http\Controllers\StudentiController@renameAllStudents');
 Route::get('/show-student/{id}', 'App\Http\Controllers\StudentiController@showStudent');
 Route::get('/show-students/{gender}/{isActive?}', 'App\Http\Controllers\StudentiController@showStudents');
+Route::get('/edit-student/', 'App\Http\Controllers\StudentiController@getEditStudent');
+Route::post('/edit-student/', 'App\Http\Controllers\StudentiController@postEditStudent')->name('post.edit.student');

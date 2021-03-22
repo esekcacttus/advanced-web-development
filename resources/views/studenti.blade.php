@@ -19,6 +19,13 @@
             @slot('attributeName','Full Name')
             @slot('value', $studenti->getFullName())
         @endcomponent
+        @if($studenti->getProfilePicture() != null)
+            @component('components.tablerow')
+                @slot('rowColor', 'green')
+                @slot('attributeName','Profile Picture')
+                @slot('value', "<img width=100 src='".url(str_replace("public/", 'storage/', $studenti->getProfilePicture()))."'>")
+            @endcomponent
+        @endif
         @component('components.tablerow')
             @slot('rowColor', 'blue')
             @slot('attributeName', "Birthdate")

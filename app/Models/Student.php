@@ -24,4 +24,8 @@ class Student extends Model
     public function getGender(){
         return $this->gender;
     }
+
+    public function getProfilePicture(){
+        return $this->profile_picture;
+    }
 }

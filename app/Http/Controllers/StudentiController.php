@@ -79,6 +79,7 @@ class StudentiController extends Controller
 
         if($profilePicture != null){
             $path = $profilePicture->store('public/images');
+            $path = str_replace("public/", 'storage/', $path);
         }
 
         $student = new Student();

@@ -6,6 +6,7 @@ use App\Models\OldStudenti;
 use App\Models\Student;
 use Carbon\Carbon;
 use GuzzleHttp\Psr7\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Request;
 
 class StudentiController extends Controller
@@ -99,7 +100,19 @@ class StudentiController extends Controller
     }
 
     public function deleteStudent($id){
-        Student::find($id)->delete();
+        $student = Student::find($id);
+
+        if(!$student){
+            return abort(404);
+        }
+
+        //delete image
+        $path = str_replace("storage/", "public/", $student->profile_picture);
+        Storage::delete($path);
+
+        //delete student
+        $student->delete();
+
         return redirect()->route('get.create.student');
     }
 
@@ -117,7 +130,7 @@ class StudentiController extends Controller
             $path = $profilePicture->store('public/images');
             $path = str_replace("public/", 'storage/', $path);
         }
-        
+
         $student->profile_picture=$path;
         $student->save();
         return redirect(route('show.student', $id));

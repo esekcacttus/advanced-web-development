@@ -92,8 +92,5 @@ class StudentiController extends Controller
         $student->save();
 
         return redirect()->route('get.edit.student');
-
-        /*$path = $request->file('profile_picture')->store('public/images');
-        dd($path);*/
     }
 }

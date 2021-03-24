@@ -22,6 +22,10 @@ class StudentiController extends Controller
     public function showStudent($id){
         $student = Student::find($id);
 
+        if(!$student){
+            return abort(404);
+        }
+
         return view('studenti', [
             'studenti' => $student
         ]);
@@ -95,6 +99,7 @@ class StudentiController extends Controller
     }
 
     public function deleteStudent($id){
-        echo $id;
+        Student::find($id)->delete();
+        return redirect()->route('get.create.student');
     }
 }

@@ -73,7 +73,6 @@ class StudentiController extends Controller
     }
 
     public function postEditStudent(Request $request){
-
         $profilePicture = $request->file('profile_picture');
         $path = null;
 
@@ -91,6 +90,8 @@ class StudentiController extends Controller
         $student->is_active = true;
 
         $student->save();
+
+        return redirect()->route('get.edit.student');
 
         /*$path = $request->file('profile_picture')->store('public/images');
         dd($path);*/

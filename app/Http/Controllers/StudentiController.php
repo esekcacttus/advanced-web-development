@@ -68,7 +68,7 @@ class StudentiController extends Controller
 
     }
 
-    public function getEditStudent(){
+    public function getCreateStudent(){
         return view('studenti-edit');
     }
 

@@ -91,6 +91,10 @@ class StudentiController extends Controller
 
         $student->save();
 
-        return redirect()->route('get.edit.student');
+        return redirect()->route('get.create.student');
+    }
+
+    public function deleteStudent($id){
+        echo $id;
     }
 }

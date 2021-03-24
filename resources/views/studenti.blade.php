@@ -23,7 +23,10 @@
             @component('components.tablerow')
                 @slot('rowColor', 'green')
                 @slot('attributeName','Profile Picture')
-                @slot('value', "<img width=100 src='".url(str_replace("public/", 'storage/', $studenti->getProfilePicture()))."'>")
+                @slot('value')
+                        <img width=100
+                             src='{{url(str_replace("public/", 'storage/', $studenti->getProfilePicture()))}}'>
+                @endslot
             @endcomponent
         @endif
         @component('components.tablerow')
@@ -34,6 +37,17 @@
         @component('components.tablerow')
             @slot('attributeName', 'Gender')
             @slot('value', $studenti->getGender())
+        @endcomponent
+        @component('components.tablerow')
+            @slot('attributeName', 'Actions')
+            @slot('value')
+                <form onsubmit="return confirm('Are your sure to delete this student?');"
+                      method="POST" action="{{route('delete.student', $studenti->getId())}}">
+                    @method('DELETE')
+                    @csrf
+                    <button>DELETE</button>
+                </form>
+            @endslot
         @endcomponent
     </table>
 @endsection

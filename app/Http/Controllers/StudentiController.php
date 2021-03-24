@@ -102,4 +102,24 @@ class StudentiController extends Controller
         Student::find($id)->delete();
         return redirect()->route('get.create.student');
     }
+
+    public function addProfilePicture(Request $request, $id){
+        $student = Student::find($id);
+
+        if(!$student){
+            return abort(404);
+        }
+
+        $profilePicture = $request->file('profile_picture');
+        $path = null;
+
+        if($profilePicture != null){
+            $path = $profilePicture->store('public/images');
+            $path = str_replace("public/", 'storage/', $path);
+        }
+        
+        $student->profile_picture=$path;
+        $student->save();
+        return redirect(route('show.student', $id));
+    }
 }

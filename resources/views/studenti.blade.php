@@ -19,16 +19,23 @@
             @slot('attributeName','Full Name')
             @slot('value', $studenti->getFullName())
         @endcomponent
-        @if($studenti->getProfilePicture() != null)
-            @component('components.tablerow')
-                @slot('rowColor', 'green')
-                @slot('attributeName','Profile Picture')
-                @slot('value')
+        @component('components.tablerow')
+            @slot('rowColor', 'green')
+            @slot('attributeName','Profile Picture')
+            @slot('value')
+                    @if($studenti->getProfilePicture() != null)
                         <img width=100
                              src='{{url(str_replace("public/", 'storage/', $studenti->getProfilePicture()))}}'>
-                @endslot
-            @endcomponent
-        @endif
+                    @else
+                        <form method="POST" enctype="multipart/form-data" action="{{route('add.profile.picture', $studenti->getId())}}">
+                            @method('PUT')
+                            @csrf
+                            <input type="file" name="profile_picture"><br>
+                            <button>Add Profile Picture</button>
+                        </form>
+                    @endif
+            @endslot
+        @endcomponent
         @component('components.tablerow')
             @slot('rowColor', 'blue')
             @slot('attributeName', "Birthdate")

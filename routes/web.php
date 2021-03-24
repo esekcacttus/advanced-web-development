@@ -38,8 +38,9 @@ Route::prefix('shkolla')->group(function (){
 
 Route::get('/create-new-student', 'App\Http\Controllers\StudentiController@createNewStudent');
 Route::get('/rename-all-students/{firstName}', 'App\Http\Controllers\StudentiController@renameAllStudents');
-Route::get('/show-student/{id}', 'App\Http\Controllers\StudentiController@showStudent');
+Route::get('/show-student/{id}', 'App\Http\Controllers\StudentiController@showStudent')->name('show.student');
 Route::get('/show-students/{gender}/{isActive?}', 'App\Http\Controllers\StudentiController@showStudents');
 Route::get('/create-student/', 'App\Http\Controllers\StudentiController@getCreateStudent')->name('get.create.student');
 Route::post('/edit-student/', 'App\Http\Controllers\StudentiController@postEditStudent')->name('post.edit.student');
 Route::delete('/delete-student/{id}', 'App\Http\Controllers\StudentiController@deleteStudent')->name('delete.student');
+Route::put('/add-profile-picture/{id}', 'App\Http\Controllers\StudentiController@addProfilePicture')->name('add.profile.picture');

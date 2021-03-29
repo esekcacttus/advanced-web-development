@@ -44,3 +44,10 @@ Route::get('/create-student/', 'App\Http\Controllers\StudentiController@getCreat
 Route::post('/edit-student/', 'App\Http\Controllers\StudentiController@postEditStudent')->name('post.edit.student');
 Route::delete('/delete-student/{id}', 'App\Http\Controllers\StudentiController@deleteStudent')->name('delete.student');
 Route::put('/add-profile-picture/{id}', 'App\Http\Controllers\StudentiController@addProfilePicture')->name('add.profile.picture');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

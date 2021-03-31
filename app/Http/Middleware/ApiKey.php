@@ -16,7 +16,7 @@ class ApiKey
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!isset($request->apiKey) || $request->apiKey != '1234'){
+        if(!isset($request->apiKey) || $request->apiKey != env('API_KEY', '1234')){
             abort(403);
         }
 

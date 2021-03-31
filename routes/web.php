@@ -51,6 +51,6 @@ Route::put('/add-profile-picture/{id}', 'App\Http\Controllers\StudentiController
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'role.check'])->name('dashboard');
 
 require __DIR__.'/auth.php';

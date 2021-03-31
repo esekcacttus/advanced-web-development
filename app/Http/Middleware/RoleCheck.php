@@ -15,11 +15,11 @@ class RoleCheck
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $allowedRole)
     {
         $authenticatedUser = Auth::user();
-        if($authenticatedUser->role != "ADMIN"){
-            Auth::logout();
+        $allowedRoles = explode(";", $allowedRole);
+        if(!in_array($authenticatedUser->role, $allowedRoles)){
             return abort(403);
         }
         return $next($request);

@@ -57,5 +57,6 @@
             @endslot
         @endcomponent
     </table>
+    <a href="{{route('get.create.student')}}">Create new Student</a>
 @endsection
 

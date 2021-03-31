@@ -31,15 +31,18 @@ Route::get('/studentat/{id?}', function ($id=1){
 
 Route::get('/studenti', 'App\Http\Controllers\StudentiController@studenti');
 
-Route::prefix('shkolla')->group(function (){
+Route::prefix('shkolla')->middleware('api.verify')->group(function (){
     Route::get('klasa', function (){return 'Klasa';});
-    Route::get('studenti', function (){return 'Studenti';});
+    Route::get('studenti', function (){return 'Studenti';})->name('dummy.student');
 });
 
 Route::get('/create-new-student', 'App\Http\Controllers\StudentiController@createNewStudent');
 Route::get('/rename-all-students/{firstName}', 'App\Http\Controllers\StudentiController@renameAllStudents');
-Route::get('/show-student/{id}', 'App\Http\Controllers\StudentiController@showStudent')->name('show.student');
-Route::get('/show-students/{gender}/{isActive?}', 'App\Http\Controllers\StudentiController@showStudents');
+Route::get('/show-student/{id}', 'App\Http\Controllers\StudentiController@showStudent')
+    ->name('show.student')
+    ->middleware('api.verify');
+Route::get('/show-students/{gender}/{isActive?}', 'App\Http\Controllers\StudentiController@showStudents')
+    ->middleware('api.verify');
 Route::get('/create-student/', 'App\Http\Controllers\StudentiController@getCreateStudent')->name('get.create.student');
 Route::post('/edit-student/', 'App\Http\Controllers\StudentiController@postEditStudent')->name('post.edit.student');
 Route::delete('/delete-student/{id}', 'App\Http\Controllers\StudentiController@deleteStudent')->name('delete.student');

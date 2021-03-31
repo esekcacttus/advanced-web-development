@@ -58,5 +58,6 @@
         @endcomponent
     </table>
     <a href="{{route('get.create.student')}}">Create new Student</a>
+    <a href="{{route('dummy.student')}}">Show dummy student</a>
 @endsection
 

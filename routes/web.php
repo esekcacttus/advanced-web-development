@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/', 'welcome');
+Route::get('/dispatch-queue/{delayMinute}', [\App\Http\Controllers\StudentiController::class, 'startQueue']);
+
 
 Route::redirect('/test', '/studenti');
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CreateNewFile;
 use App\Models\OldStudenti;
 use App\Models\Student;
 use Carbon\Carbon;
-use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -134,5 +134,10 @@ class StudentiController extends Controller
         $student->profile_picture=$path;
         $student->save();
         return redirect(route('show.student', $id));
+    }
+
+    public function startQueue($delayMinute){
+        CreateNewFile::dispatch(storage_path('/example_'.rand(0, 100000).'.txt'))
+            ->delay(now()->addMinutes($delayMinute));
     }
 }

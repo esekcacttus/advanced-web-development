@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dispatch-queue/{delayMinute}', [\App\Http\Controllers\StudentiController::class, 'startQueue']);
+Route::get('/dispatch-queue/{delayMinute}', [StudentiController::class, 'startQueue']);
+Route::get('/send-email/{delaySeconds}', [StudentiController::class, 'sendEmail']);
 
 
 Route::redirect('/test', '/studenti');

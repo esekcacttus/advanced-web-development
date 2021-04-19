@@ -144,6 +144,6 @@ class StudentiController extends Controller
 
     public function sendEmail($delaySeconds){
         SendMail::dispatch("test@email.com", "Tung!")
-            ->delay(now()->addSeconds($delaySeconds));
+            ->delay(now()->addSeconds($delaySeconds))->onQueue('emails');
     }
 }

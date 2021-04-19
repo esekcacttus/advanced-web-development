@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\StudentiController;
 use Illuminate\Support\Facades\Route;
 
@@ -58,5 +59,10 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard-student', function () {
     return view('dashboard');
 })->middleware(['auth', 'role.check:STUDENT;ADMIN'])->name('dashboard.student');
+
+Route::prefix('mail')->group(function (){
+    Route::get('/', [MailController::class, 'index'])->name('mail.index');
+    Route::post('/', [MailController::class, 'sendMail'])->name('mail.sendMail');
+});
 
 require __DIR__.'/auth.php';

@@ -63,6 +63,7 @@ Route::get('/dashboard-student', function () {
 Route::prefix('mail')->group(function (){
     Route::get('/', [MailController::class, 'index'])->name('mail.index');
     Route::post('/', [MailController::class, 'sendMail'])->name('mail.sendMail');
+    Route::get('/send-html/{name}/{email}', [MailController::class, 'sendHtmlMail'])->name('mail.send-html');
 });
 
 require __DIR__.'/auth.php';

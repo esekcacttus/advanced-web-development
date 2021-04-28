@@ -55,6 +55,15 @@ class TestCommand extends Command
         });
 
         $this->info("The name by DATABASE: ".$studentName);
+
+
+        $color = $this->choice("Color", ['Red', 'Green', 'Blue']);
+        $this->line("The choosen color is: ".$color);
+
+        $headers = ["First Name", "Last Name"];
+        $content = Student::all(['first_name', 'last_name'])->toArray();
+        $this->table($headers, $content);
+
         return 0;
     }
 }

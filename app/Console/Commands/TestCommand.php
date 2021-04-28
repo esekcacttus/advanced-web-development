@@ -64,6 +64,16 @@ class TestCommand extends Command
         $content = Student::all(['first_name', 'last_name'])->toArray();
         $this->table($headers, $content);
 
+        $bar = $this->output->createProgressBar(100);
+
+        $bar->start();
+
+        for($i=0; $i<100; $i++){
+            $bar->advance();
+            sleep(1);
+        }
+
+        $bar->finish();
         return 0;
     }
 }

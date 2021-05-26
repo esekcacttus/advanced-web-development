@@ -9,6 +9,8 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected $hidden = ['profile_picture'];
+
     public function getId(){
         return $this->id;
     }
